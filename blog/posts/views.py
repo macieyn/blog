@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
+from . import models
+
 # Create your views here.
 
 def home(request):
-    return render(request, 'posts/home_page.html')
+    posts = models.Post.objects.all()
+    return render(request, 'posts/home_page.html', context={'posts': posts})
