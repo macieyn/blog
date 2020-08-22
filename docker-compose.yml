@@ -4,7 +4,7 @@ services:
   db:
     image: postgres
     environment: 
-      - POSTGRES_DB=blogdb
+      - POSTGRES_DB=blog
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   pga:
@@ -20,7 +20,7 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     environment: 
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/blogdb
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/blog
     volumes:
       - ./blog:/app
     ports:
