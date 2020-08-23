@@ -61,4 +61,7 @@ class Post(models.Model):
 
     def get_tags(self):
         return Tag.objects.filter(post=self)
+
+    def get_intro(self):
+        return self.content.split('\n')[0]
     

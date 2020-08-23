@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="abreviation">
-      <p>{{ post.content | safe }}</p>
+      {{ post.get_intro | safe }}
       <a href="{{ post.get_absolute_url }}"><span class="read-more">Read more →</span></a>
     </div>
   </div>
