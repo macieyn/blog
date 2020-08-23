@@ -4,7 +4,7 @@ from django.utils import timezone
 from colorfield.fields import ColorField
 from django.shortcuts import reverse
 from ckeditor.fields import RichTextField
-
+from django.template.response import SimpleTemplateResponse
 
 # Create your models here.
 
@@ -64,4 +64,10 @@ class Post(models.Model):
 
     def get_intro(self):
         return self.content.split('\n')[0]
+
+    def credentials(self):
+        return {
+            'author': self.author,
+            'created_at': self.created_at,
+        }
     

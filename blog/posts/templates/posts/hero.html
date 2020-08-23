@@ -1,11 +1,11 @@
+{% load humanize %}
+
 <div class="container-fluid hero d-flex" style="background-image: url('https://picsum.photos/1200/350')">
   <div class="container align-self-center justify-content-center">
     <div class="d-flex justify-content-center align-items-center">
       <div class="d-flex flex-column align-items-center">
         <div class="mb-3 align-self-center h1">{{ title }}</div>
-        {% if subtitle %}
-        <div class="mb-3 align-self-center">{{ subtitle }}</div>
-        {% endif %}
+        <div class="mb-3 align-self-center">Post by {{ credentials.author }}, {{ credentials.created_at | naturalday }}</div>
         <div class="tags">
         {% for tag in tags %}
            <a href="{{ tag.get_absolute_url }}" class="tag"

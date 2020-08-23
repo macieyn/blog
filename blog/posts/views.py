@@ -6,7 +6,11 @@ from . import models
 
 def home(request):
     posts = models.Post.objects.all()
+    tags = models.Tag.objects.all()
     context={
+        'title': "Welcome to Junior's Journal",
+        'subtitle': "What's your struggle today?",
+        'tags': tags,
         'posts': posts
     }
     return render(request, 'home_page.html', context)
