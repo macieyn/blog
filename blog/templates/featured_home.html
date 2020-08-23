@@ -6,7 +6,7 @@
     <div class="card featured-bg-image" style="background-image: url('https://picsum.photos/600/400');">
       <div class="card-body">
         <p class="card-text mb-1"><small class="text-white">Last updated {{ post.modified_at | naturalday }}</small></p>
-        <a href="post.html" class="h5 card-title featured-post-title">{{ post.title }}</a>
+        <a href="{{ post.get_absolute_url }}" class="h5 card-title featured-post-title">{{ post.title }}</a>
         {% include 'tags.html' with tags=post.get_tags %}
       </div>
     </div>

@@ -2,6 +2,8 @@
 {% load humanize %}
 
 {% block content %}
+<!-- POST FEED -->
+
 <div class="row">
   <div class="col-12">
 
@@ -16,7 +18,7 @@
 
             {% include 'tags.html' with tags=post.get_tags class="align-self-end" %}
 
-            <div class="title mt-auto">{{ post.title }}</div>
+            <a href="{{ post.get_absolute_url }}" class="title mt-auto">{{ post.title }}</a>
             <div class="credentials mb-3">Post by {{ post.author }}, {{ post.created_at | naturaltime }}</div>
 
           </div>

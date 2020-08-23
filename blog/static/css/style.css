@@ -72,6 +72,12 @@
   background-color: rgba(20, 20, 20, 0.6);
   padding: 4px 15px 2px 15px;
   color: white;
+  transition: 0.3s;
+}
+
+#post-feed .title:hover {
+  text-decoration: none;
+  color: rgb(82, 150, 253);
 }
 
 #post-feed .credentials {

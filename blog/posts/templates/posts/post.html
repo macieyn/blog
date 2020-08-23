@@ -4,6 +4,7 @@
 
 {% include 'posts/hero.html' with title=post.title credentials=post.credentials tags=post.get_tags %}
 
+<!-- POST -->
 <div class="container">
   <div class="container-post post-content">
     {{ post.content | safe }}
