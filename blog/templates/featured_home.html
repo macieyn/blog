@@ -7,9 +7,7 @@
       <div class="card-body">
         <p class="card-text mb-1"><small class="text-white">Last updated {{ post.modified_at | naturalday }}</small></p>
         <a href="post.html" class="h5 card-title featured-post-title">{{ post.title }}</a>
-        {% for tag in post.get_tags %}
-          {% include 'tag.html' with tag=tag %}
-        {% endfor %}
+        {% include 'tags.html' with tags=post.get_tags %}
       </div>
     </div>
   

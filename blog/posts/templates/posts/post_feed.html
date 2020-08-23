@@ -14,11 +14,7 @@
         <div class="image" style="background-image: url('https://picsum.photos/600/400');">
           <div class="d-flex flex-column align-items-start" style="height: 100%">
 
-            <div class="tags align-self-end">
-              {% for tag in post.get_tags %}
-                {% include 'tag.html' with tag=tag %}
-              {% endfor %}
-            </div>
+            {% include 'tags.html' with tags=post.get_tags class="align-self-end" %}
 
             <div class="title mt-auto">{{ post.title }}</div>
             <div class="credentials mb-3">Post by {{ post.author }}, {{ post.created_at | naturaltime }}</div>

@@ -6,6 +6,8 @@ from django.shortcuts import reverse
 from ckeditor.fields import RichTextField
 from django.template.response import SimpleTemplateResponse
 
+import random
+
 # Create your models here.
 
 User = get_user_model()
@@ -71,3 +73,12 @@ class Post(models.Model):
             'created_at': self.created_at,
         }
     
+    @classmethod
+    def get_featured(cls, count=0):
+        if count == 0:
+            return cls.objects.filter(featured=True)
+        else:
+            featured_ids = [obj.id for obj in cls.objects.filter(featured=True)]
+            random.shuffle(featured_ids)
+            random_featured = cls.objects.filter(id__in=featured_ids[:count])
+            return random_featured

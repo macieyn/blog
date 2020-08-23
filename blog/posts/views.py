@@ -5,8 +5,8 @@ from . import models
 # Create your views here.
 
 def home(request):
-    posts = models.Post.objects.all()
-    featured = posts.filter(featured=True)[:3]
+    posts = models.Post.objects.all().order_by('-created_at')
+    featured = models.Post.get_featured(3)
     tags = models.Tag.objects.all()
     context={
         'title': "Welcome to Junior's Journal",

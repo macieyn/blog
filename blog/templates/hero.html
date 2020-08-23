@@ -6,11 +6,7 @@
         {% if subtitle %}
         <div class="mb-3 align-self-center">{{ subtitle }}</div>
         {% endif %}
-        <div class="tags">
-        {% for tag in tags %}
-          {% include 'tag.html' with tag=tag %}
-        {% endfor %}
-        </div>
+        {% include 'tags.html' with tags=tags %}
       </div>
     </div>
   </div>

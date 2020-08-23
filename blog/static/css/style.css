@@ -20,6 +20,7 @@
   white-space: nowrap;
   vertical-align: baseline;
   transition: 0.1s;
+  margin: 0 5px;
 }
 
 .tag:hover {
