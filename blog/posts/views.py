@@ -6,12 +6,14 @@ from . import models
 
 def home(request):
     posts = models.Post.objects.all()
+    featured = posts.filter(featured=True)[:3]
     tags = models.Tag.objects.all()
     context={
         'title': "Welcome to Junior's Journal",
         'subtitle': "What's your struggle today?",
         'tags': tags,
-        'posts': posts
+        'posts': posts,
+        'featured': featured,
     }
     return render(request, 'home_page.html', context)
 

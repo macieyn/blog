@@ -16,8 +16,7 @@
 
             <div class="tags align-self-end">
               {% for tag in post.get_tags %}
-              <a href="{{ tag.get_absolute_url }}" class="tag"
-                style="background-color: {{ tag.color }}; color: {{ tag.text_color }}">{{ tag }}</a>
+                {% include 'tag.html' with tag=tag %}
               {% endfor %}
             </div>
 

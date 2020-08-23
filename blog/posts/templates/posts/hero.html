@@ -8,8 +8,7 @@
         <div class="mb-3 align-self-center">Post by {{ credentials.author }}, {{ credentials.created_at | naturalday }}</div>
         <div class="tags">
         {% for tag in tags %}
-           <a href="{{ tag.get_absolute_url }}" class="tag"
-                style="background-color: {{ tag.color }}; color: {{ tag.text_color }}">{{ tag }}</a>
+        {% include 'tag.html' with tag=tag %}
         {% endfor %}
         </div>
       </div>
