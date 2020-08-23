@@ -144,9 +144,8 @@
   margin: 5px 5px;
 }
 
-#post p {
-  max-width: 680px;
-  margin: 0 auto;
+.post-content > p{
+  text-align: justify;
   font-size: 1.3em;
   font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
 }
@@ -156,4 +155,9 @@
   margin: 0 auto;
   font-size: 1.3em;
   font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.container-post {
+  max-width: 680px !important;
+  margin: 30px auto;
 }

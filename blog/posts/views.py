@@ -9,7 +9,7 @@ def home(request):
     context={
         'posts': posts
     }
-    return render(request, 'posts/post_feed.html', context)
+    return render(request, 'home_page.html', context)
 
 def tag_detail(request, slug):
     context = {
@@ -21,4 +21,4 @@ def post_detail(request, slug):
     context = {
         'post': get_object_or_404(models.Post, slug=slug)
     }
-    return render(request, 'base.html', context)
+    return render(request, 'posts/post.html', context)

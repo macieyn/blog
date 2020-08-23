@@ -18,52 +18,13 @@
 
   <body>
 
-    <!-- NAVBAR -->
-    {% include 'navbar.html' %}
+  <!-- NAVBAR -->
+  {% include 'navbar.html' %}
 
-    <!-- HERO -->
-    {% include 'hero.html' %}
+  {% block content %}{% endblock content %}
 
-    <!-- MAIN CONTENT -->
-    <div class="container">
-
-      {% include 'featured_home.html' %}
-
-      <main>
-        <div class="row">
-          <div class="col-md-12 col-lg-9">
-            {% block content %}
-            {% endblock content %}
-          </div>
-
-          <!-- ABOUT ME -->
-          <div class="col-lg-3 col-md-12">
-            <div id="about">
-              <div class="section-title">About me</div>
-              <div class="about">
-                <div class="image" style="background-image: url('https://picsum.photos/400/400');"></div>
-                <div class="text">
-                  <p>Hi! My name is Maciej.</p>
-                  <p>Links:
-                    <ul class="list-group">
-                      <li class="list-group-item">LinkedIn</li>
-                      <li class="list-group-item">Github</li>
-                      <li class="list-group-item">Stackoverflow</li>
-                    </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <!-- POST FEED  -->
-
-    </div>
-
-    <!-- FOOTER -->
-    {% include 'footer.html' %}
+  <!-- FOOTER -->
+  {% include 'footer.html' %}
 
   </body>
 

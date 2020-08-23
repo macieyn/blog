@@ -1,42 +1,45 @@
-{% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
 
 {% block content %}
-<div class="section-title" >Latest posts</div>
-<div class="post-feed" id="post-feed">
+<div class="row">
+  <div class="col-12">
 
-  {% for post in posts %}
-  
-  <div class="post">
-    <div class="image" style="background-image: url('https://picsum.photos/600/400');">
-      <div class="d-flex flex-column align-items-start" style="height: 100%">
-        
-        <div class="tags align-self-end">
-        {% for tag in post.get_tags %}
-          <a href="{{ tag.get_absolute_url }}" class="tag" style="background-color: {{ tag.color }}; color: {{ tag.text_color }}">{{ tag }}</a>
-        {% endfor %}
+    <div class="section-title">Latest posts</div>
+    <div class="post-feed" id="post-feed">
+
+      {% for post in posts %}
+
+      <div class="post">
+        <div class="image" style="background-image: url('https://picsum.photos/600/400');">
+          <div class="d-flex flex-column align-items-start" style="height: 100%">
+
+            <div class="tags align-self-end">
+              {% for tag in post.get_tags %}
+              <a href="{{ tag.get_absolute_url }}" class="tag"
+                style="background-color: {{ tag.color }}; color: {{ tag.text_color }}">{{ tag }}</a>
+              {% endfor %}
+            </div>
+
+            <div class="title mt-auto">{{ post.title }}</div>
+            <div class="credentials mb-3">Post by {{ post.author }}, {{ post.created_at | naturaltime }}</div>
+
+          </div>
         </div>
-
-        <div class="title mt-auto">{{ post.title }}</div>
-        <div class="credentials mb-3">Post by {{ post.author }}, {{ post.created_at | naturaltime }}</div>
-
-      </div>
-    </div>
-    <div class="abreviation">
-      {{ post.get_intro | safe }}
-      <div class="d-flex">
-        <div class="align-self-start">
-          <a href="{{ post.get_absolute_url }}"><span class="read-more">Read more →</span></a>
+        <div class="abreviation">
+          {{ post.get_intro | safe }}
+          <div class="d-flex">
+            <div class="align-self-start">
+              <a href="{{ post.get_absolute_url }}"><span class="read-more">Read more →</span></a>
+            </div>
+            <a href="#" class="ml-auto btn btn-primary btn-sm">Edit</a>
+            <a href="#" class="btn btn-danger btn-sm ml-3">Delete</a>
+          </div>
         </div>
-        <a href="#" class="ml-auto btn btn-primary btn-sm">Edit</a>
-        <a href="#" class="btn btn-danger btn-sm ml-3">Delete</a>
       </div>
+
+      {% endfor %}
     </div>
-  </div>
-
-  {% endfor %}
-
   </div>
 </div>
 
