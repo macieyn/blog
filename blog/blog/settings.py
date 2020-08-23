@@ -138,6 +138,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full',
+        'toolbar': [
+                 ['Bold'],
+                 ['CodeSnippet'], # here
+             ], 'extraPlugins': 'codesnippet', # here
     },
+    'special': 
+        {
+            'toolbar': 'Special', 'height': 500,
+         'toolbar_Special': 
+             [
+                 ['Bold'],
+                 ['CodeSnippet'], # here
+             ], 'extraPlugins': 'codesnippet', # here
+         }
 }
