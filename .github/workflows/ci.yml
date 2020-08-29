@@ -6,14 +6,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Exporting Paths
+        run: | 
+          export PATH="$PATH:/home/runner/.local/bin"
+          echo $PATH
       - name: Install Django Dependencies
         run: |
-          export PATH="$PATH:/home/runner/.local/bin"
           python3 -m pip install --upgrade pip
           python3 -m pip install -U setuptools
           python3 -m pip install -r requirements.txt
       - name: Run Django Migrations
-        run: |        
+        run: |
+          ls        
           python3 manage.py makemigrations
           python3 manage.py migrate
       - name: Run Django Tests
