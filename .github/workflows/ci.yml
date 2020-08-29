@@ -6,12 +6,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Run Django tests
+      - name: Install Django Dependencies
         run: |
           export PATH="$PATH:/home/runner/.local/bin"
           python3 -m pip install --upgrade pip
           python3 -m pip install -U setuptools
-          python3 -m pip install -r requirements.txt         
+          python3 -m pip install -r requirements.txt
+      - name: Run Django Migrations
+        run: |        
           python3 manage.py makemigrations
           python3 manage.py migrate
-          python3 manage.py test
+      - name: Run Django Tests
+        run: python3 manage.py test
