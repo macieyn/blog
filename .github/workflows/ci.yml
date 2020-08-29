@@ -9,8 +9,8 @@ jobs:
       - name: Run Django tests
         run: |
           python3 -m pip install --upgrade pip
-          pip3 install setuptools
-          pip3 install -r requirements.txt         
+          python3 -m pip install setuptools
+          python3 -m pip install -r requirements.txt         
           python3 manage.py makemigrations
           python3 manage.py migrate
           python3 manage.py test
