@@ -4,7 +4,9 @@ from django.utils import timezone
 from colorfield.fields import ColorField
 from django.shortcuts import reverse
 from ckeditor.fields import RichTextField
+from django.template.response import SimpleTemplateResponse
 
+import random
 
 # Create your models here.
 
@@ -61,4 +63,22 @@ class Post(models.Model):
 
     def get_tags(self):
         return Tag.objects.filter(post=self)
+
+    def get_intro(self):
+        return self.content.split('\n')[0]
+
+    def credentials(self):
+        return {
+            'author': self.author,
+            'created_at': self.created_at,
+        }
     
+    @classmethod
+    def get_featured(cls, count=0):
+        if count == 0:
+            return cls.objects.filter(featured=True)
+        else:
+            featured_ids = [obj.id for obj in cls.objects.filter(featured=True)]
+            random.shuffle(featured_ids)
+            random_featured = cls.objects.filter(id__in=featured_ids[:count])
+            return random_featured

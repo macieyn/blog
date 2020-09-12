@@ -5,11 +5,17 @@ from . import models
 # Create your views here.
 
 def home(request):
-    posts = models.Post.objects.all()
+    posts = models.Post.objects.all().order_by('-created_at')
+    featured = models.Post.get_featured(3)
+    tags = models.Tag.objects.all()
     context={
-        'posts': posts
+        'title': "Welcome to Junior's Journal",
+        'subtitle': "What's your struggle today?",
+        'tags': tags,
+        'posts': posts,
+        'featured': featured,
     }
-    return render(request, 'posts/post_feed.html', context)
+    return render(request, 'home_page.html', context)
 
 def tag_detail(request, slug):
     context = {
@@ -21,4 +27,4 @@ def post_detail(request, slug):
     context = {
         'post': get_object_or_404(models.Post, slug=slug)
     }
-    return render(request, 'base.html', context)
+    return render(request, 'posts/post.html', context)

@@ -1,0 +1,15 @@
+{% load humanize %}
+
+<!-- HERO -->
+
+<div class="container-fluid hero d-flex" style="background-image: url('https://picsum.photos/1200/350')">
+  <div class="container align-self-center justify-content-center">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="d-flex flex-column align-items-center">
+        <div class="mb-3 align-self-center h1">{{ title }}</div>
+        <div class="mb-3 align-self-center">Post by {{ credentials.author }}, {{ credentials.created_at | naturalday }}</div>
+        {% include 'tags.html' with tags=tags %}
+      </div>
+    </div>
+  </div>
+</div>
