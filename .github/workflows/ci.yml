@@ -39,4 +39,4 @@ jobs:
           DJANGO_SECRET_KEY: "${{secrets.DJANGO_SECRET_KEY}}"
         run: |
           cd blog/
-          python3 manage.py blog
+          python3 manage.py test
