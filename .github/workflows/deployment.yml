@@ -1,0 +1,36 @@
+name: Deployment
+
+on:
+  push:
+    branches: [ test ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+        
+    - name: Exporting Paths
+      run: | 
+        export PATH="$PATH:/home/runner/.local/bin"
+        echo $PATH
+
+    - name: Install Django Dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -U setuptools
+        python3 -m pip install -r requirements.txt
+    
+    - name: Sync
+      env:
+        DEST: "${{secrets.HOSTING_USER}}@${{secrets.HOSTING}}:~/domain/notatnik.macieyn.mduser.net/public_python"
+      run: |
+        echo "${{secrets.DEPLOY_KEY}}" > deploy_key
+        chmod 600 ./deploy_key
+        rsync -chav --delete \
+          -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
+          --exclude /deploy_key \
+          --exclude /.git/ \
+          --exclude /.github/ \
+           ./ ${{env.DEST}}
