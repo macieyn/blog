@@ -29,11 +29,14 @@ jobs:
           python3 -m pip install -U setuptools
           python3 -m pip install -r requirements.txt
       - name: Run Django Migrations
+        env:
+          DJANGO_SECRET_KEY: "${{secrets.DJANGO_SECRET_KEY}}"
         run: |
-          ls
-          pwd        
           python3 blog/manage.py makemigrations
           python3 blog/manage.py migrate
       - name: Run Django Tests
+        env:
+          DJANGO_SECRET_KEY: "${{secrets.DJANGO_SECRET_KEY}}"
         run: |
-          python3 blog/manage.py test
+          cd blog/
+          python3 manage.py test

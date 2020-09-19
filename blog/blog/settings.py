@@ -11,22 +11,27 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 
-from pathlib import Path
-
-import dj_database_url
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+# BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+MYDEVIL = os.getenv('MYDEVIL', 0)
+DOCKER = os.getenv('DOCKER', 0)
+
+if MYDEVIL:
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+else:
+    from pathlib import Path
+    BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q(a-51l-1#7@s5725y+%630e5mr5jjuu4t6=m28$5d2go9&=6_'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False if MYDEVIL else True
 
 ALLOWED_HOSTS = ['*']
 
@@ -66,7 +71,9 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [
+            'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,8 +105,17 @@ if os.getenv('GITHUB_WORKFLOW'):
     }
 else:
     DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600)
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT')
+        }
     }
+
+
 
 
 # Password validation
@@ -139,18 +155,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static') 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'public', 'media') 
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
-
-# CKEDITOR_BASEPATH = "/www/static/ckeditor/ckeditor/"
+CKEDITOR_BASEPATH = STATIC_ROOT + '/ckeditor/ckeditor/'
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full', 
-        'extraPlugins': 'codesnippet', # here
+        'toolbar': 'full',
+        'extraPlugins': 'codesnippet',
     },
 }

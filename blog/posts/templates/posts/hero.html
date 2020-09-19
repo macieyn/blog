@@ -7,7 +7,8 @@
     <div class="d-flex justify-content-center align-items-center">
       <div class="d-flex flex-column align-items-center">
         <div class="mb-3 align-self-center h1">{{ title }}</div>
-        <div class="mb-3 align-self-center">Post by {{ credentials.author }}, {{ credentials.created_at | naturalday }}</div>
+        <div class="mb-3 align-self-center">Autor wpisu: {{ credentials.author }}, {{ credentials.created_at | naturalday }}</div>
+        <div class="mb-3 align-self-center">Liczba wyświetleń: {{ credentials.views }}</div>
         {% include 'tags.html' with tags=tags %}
       </div>
     </div>
