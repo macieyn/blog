@@ -13,7 +13,7 @@ jobs:
     
     - name: Sync
       env:
-        DEST: "macieyn@s48.mydevil.net:~/domains/notatnik.macieyn.mduser.net/public_python"
+        DEST: "macieyn@s48.mydevil.net:~/domains/notatnik.macieyn.usermd.net/public_python"
       run: |
         echo "${{secrets.DEPLOY_KEY}}" > deploy_key
         chmod 600 ./deploy_key
