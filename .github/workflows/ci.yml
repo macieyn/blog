@@ -38,4 +38,5 @@ jobs:
         env:
           DJANGO_SECRET_KEY: "${{secrets.DJANGO_SECRET_KEY}}"
         run: |
-          python3 blog/manage.py test blog
+          cd blog/
+          python3 manage.py blog
