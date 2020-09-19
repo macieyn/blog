@@ -9,8 +9,8 @@ def home(request):
     featured = models.Post.get_featured(3)
     tags = models.Tag.objects.all()
     context={
-        'title': "Welcome to Junior's Journal",
-        'subtitle': "What's your struggle today?",
+        'title': "Witaj w Notatniku Juniora",
+        'subtitle': "O czym chcesz poczytać?",
         'tags': tags,
         'posts': posts,
         'featured': featured,
@@ -24,7 +24,11 @@ def tag_detail(request, slug):
     return render(request, 'base.html', context)
 
 def post_detail(request, slug):
+    post = get_object_or_404(models.Post, slug=slug)
+    if request.user != post.author:
+        post.views += 1
+        post.save()
     context = {
-        'post': get_object_or_404(models.Post, slug=slug)
+        'post': post
     }
     return render(request, 'posts/post.html', context)

@@ -47,6 +47,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag)
     featured = models.BooleanField(default=False)
     slug = models.SlugField()
+    views = models.IntegerField(default=0)
 
     def __str__(self):
         return f'Post: {self.title}'
@@ -71,6 +72,7 @@ class Post(models.Model):
         return {
             'author': self.author,
             'created_at': self.created_at,
+            'views': self.views
         }
     
     @classmethod
