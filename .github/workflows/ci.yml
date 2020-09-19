@@ -1,0 +1,39 @@
+name: Testing
+on: push
+
+jobs:
+  test_project:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres: # we need a postgres docker image to be booted a side car service to run the tests that needs a db
+        image: postgres
+        env: # the environment variable must match with app/settings.py if block of DATBASES variable otherwise test will fail due to connectivity issue.
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github-actions
+        ports:
+          - 5432:5432 # exposing 5432 port for application to use
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+  
+    steps:
+      - uses: actions/checkout@v2
+      - name: Exporting Paths
+        run: | 
+          export PATH="$PATH:/home/runner/.local/bin"
+          echo $PATH
+      - name: Install Django Dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -U setuptools
+          python3 -m pip install -r requirements.txt
+      - name: Run Django Migrations
+        run: |
+          ls
+          pwd        
+          python3 blog/manage.py makemigrations
+          python3 blog/manage.py migrate
+      - name: Run Django Tests
+        run: |
+          python3 blog/manage.py test

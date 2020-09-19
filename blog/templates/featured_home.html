@@ -1,0 +1,16 @@
+{% load humanize %}
+<section id="featured" class="container">
+  <div class="section-title">Featured Posts</div>
+  <div class="card-deck">
+  {% for post in featured %}
+    <div class="card featured-bg-image" style="background-image: url('https://picsum.photos/600/400');">
+      <div class="card-body">
+        <p class="card-text mb-1"><small class="text-white">Last updated {{ post.modified_at | naturalday }}</small></p>
+        <a href="{{ post.get_absolute_url }}" class="h5 card-title featured-post-title">{{ post.title }}</a>
+        {% include 'tags.html' with tags=post.get_tags %}
+      </div>
+    </div>
+  
+  {% endfor %}
+  </div>
+</section>
