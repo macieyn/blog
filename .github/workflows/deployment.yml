@@ -10,17 +10,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-        
-    - name: Exporting Paths
-      run: | 
-        export PATH="$PATH:/home/runner/.local/bin"
-        echo $PATH
-
-    - name: Install Django Dependencies
-      run: |
-        python3 -m pip install --upgrade pip
-        python3 -m pip install -U setuptools
-        python3 -m pip install -r requirements.txt
     
     - name: Sync
       env:
