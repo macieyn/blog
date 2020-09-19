@@ -35,5 +35,7 @@ jobs:
           python3 blog/manage.py makemigrations
           python3 blog/manage.py migrate
       - name: Run Django Tests
+        env:
+          DJANGO_SECRET_KEY: "${{secrets.DJANGO_SECRET_KEY}}"
         run: |
           python3 blog/manage.py test
