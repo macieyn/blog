@@ -22,4 +22,4 @@ jobs:
           --exclude /deploy_key \
           --exclude /.git/ \
           --exclude /.github/ \
-           ./ ${{env.DEST}}
+           ./blog/ ${{env.DEST}}
