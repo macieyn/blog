@@ -34,10 +34,8 @@ jobs:
         script: |
           cd ~/domains/notatnik.macieyn.usermd.net/public_python
           source ~/.virtualenvs/junior/bin/activate
-          python --version
-          pip freeze
-          # python ~/domains/notatnik.macieyn.usermd.net/public_python/manage.py makemigrations
-          # python ~/domains/notatnik.macieyn.usermd.net/public_python/manage.py migrate
-          # python ~/domains/notatnik.macieyn.usermd.net/public_python/manage.py collectstatic --clear
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py collectstatic --clear
 
 
