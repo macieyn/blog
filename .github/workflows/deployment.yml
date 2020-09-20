@@ -32,6 +32,7 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY}}
         port: 22
         script: |
+          ls
           python manage.py makemigrations
           python manage.py migrate
           python manage.py collectstatic --clear
