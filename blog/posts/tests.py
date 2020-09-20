@@ -22,7 +22,7 @@ class PostPageTests(TestCase):
         response = views.home(request)
         html = response.content.decode('utf8')
         self.assertTrue(html.startswith('<!DOCTYPE html>'))
-        self.assertTrue(html.endswith('</html>'))
+        self.assertTrue(html.endswith('</html>\n'))
 
     def test_page_displays_posts(self):
         post = models.Post.objects.create(title='AbCdEf', content='GhIjKl', slug='abcd')

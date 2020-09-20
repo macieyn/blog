@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block hero %}
+{% include 'hero.html' with title=title subtitle=subtitle tags=tags%}
+{% endblock hero %}
+
+
+
+{% block content %}
+<div class="container">
+
+  <main>
+<div class="row">
+  <div class="col-12">
+
+    <div class="section-title">Najnowsze posty</div>
+    <div class="post-feed" id="post-feed">
+
+{% for post in tag.post_set.all %}
+
+{% include 'posts/post_card.html' with post=post %}
+
+{% endfor %}
+
+    </div>
+  </div>
+</div>
+  </main>
+
+</div>
+
+{% endblock content %}
