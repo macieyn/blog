@@ -1,29 +1,27 @@
 {% extends 'base.html' %}
 
+<!-- HERO -->
+{% block hero %} 
+{% include 'hero.html' with title=title subtitle=subtitle tags=tags%} 
+{% endblock hero %} 
+
 {% block content %}
 
-<!-- HERO -->
-{% include 'hero.html' with title=title subtitle=subtitle tags=tags%}
-
 <!-- FEATURED -->
-{% include 'featured_home.html' with featured=featured %}
+{% if featured %} 
+{% include 'featured_home.html' with featured=featured %} 
+{%endif %}
 
 <!-- MAIN CONTENT -->
 <div class="container">
-
   <main>
     <div class="row">
-      <div class="col-9">
+      <div class="col-lg-9 col-md-12">
         {% include 'posts/post_feed.html' with posts=posts %}
       </div>
-      <div class="col-3">
-        {% include 'about_me.html' %}
-      </div>
+      <div class="col-lg-3 col-md-12">{% include 'about_me.html' %}</div>
     </div>
-
   </main>
-
 </div>
-
 
 {% endblock content %}

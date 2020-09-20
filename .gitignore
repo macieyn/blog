@@ -134,4 +134,8 @@ dmypy.json
 
 # collected static files
 www/
-**/migrations/*
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+blog/public/
+python_public/

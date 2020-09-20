@@ -18,9 +18,17 @@ services:
       - db
   django:
     build: .
+    command: python manage.py makemigrations
+    command: python manage.py migrate
     command: python manage.py runserver 0.0.0.0:8000
     environment: 
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/blog
+      - DOCKER=1
+      - DB_USER=postgres
+      - DB_NAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DJANGO_SECRET_KEY=q(a-51l-1#7@s5725y+%630e5mr5jjuu4t6=m28d2go9&=6_
     volumes:
       - ./blog:/app
     ports:

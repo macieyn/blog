@@ -1,3 +1,17 @@
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+}
+
 .featured-bg-image {
   background-color: rgba(20, 20, 20, 0.5); 
   background-repeat: no-repeat;
@@ -34,8 +48,7 @@
   background-size: cover; 
   background-blend-mode: multiply;
   transition: 0.3s;
-  min-height: 350px;
-  height: 100%;
+  height: 350px;
   color: white;
 }
 
@@ -167,5 +180,26 @@
 .container-post {
   max-width: 680px !important;
   margin: 30px auto;
+  min-height: 100%;
 }
 
+#about  p {
+  margin-bottom: 0.5rem;
+}
+
+.icon-link {
+  color: #777;
+  transition: 0.3s;
+}
+
+.icon-github:hover {
+  color: #333;
+}
+
+.icon-twitter:hover {
+  color: #00acee;
+}
+
+.icon-linkedin:hover {
+  color: #0e76a8;
+}
