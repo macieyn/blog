@@ -13,7 +13,7 @@ jobs:
     
     - name: Sync
       env:
-        DEST: "${{secrets.HOSTING_USER}}@${{secrets.HOSTING}}:~/domain/notatnik.macieyn.mduser.net/public_python"
+        DEST: "macieyn@s48.mydevil.net:~/domains/notatnik.macieyn.usermd.net/public_python"
       run: |
         echo "${{secrets.DEPLOY_KEY}}" > deploy_key
         chmod 600 ./deploy_key
@@ -22,6 +22,7 @@ jobs:
           --exclude /deploy_key \
           --exclude /.git/ \
           --exclude /.github/ \
+
            ./ ${{env.DEST}}
            
     - name: Run migrations and collect static files via SSH
@@ -34,6 +35,7 @@ jobs:
         script: |
           cd ~/domains/notatnik.macieyn.usermd.net/public_python
           source ~/.virtualenvs/junior/bin/activate
-          python3 manage.py makemigrations
-          python3 manage.py migrate
-          python3 manage.py collectstatic --clear
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py collectstatic --clear
+
