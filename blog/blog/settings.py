@@ -16,11 +16,8 @@ import os
 MYDEVIL = os.getenv('MYDEVIL', 0)
 DOCKER = os.getenv('DOCKER', 0)
 
-if MYDEVIL:
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-else:
-    from pathlib import Path
-    BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 
@@ -161,7 +158,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'public', 'media') 
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 CKEDITOR_BASEPATH = STATIC_ROOT + '/ckeditor/ckeditor/'

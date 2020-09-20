@@ -22,8 +22,8 @@ jobs:
           --exclude /deploy_key \
           --exclude /.git/ \
           --exclude /.github/ \
-          ./blog/ ${{env.DEST}}
-          
+           ./ ${{env.DEST}}
+           
     - name: Run migrations and collect static files via SSH
       uses: appleboy/ssh-action@master
       with:
@@ -34,8 +34,8 @@ jobs:
         script: |
           cd ~/domains/notatnik.macieyn.usermd.net/public_python
           source ~/.virtualenvs/junior/bin/activate
-          ls
-          python3 manage.py makemigrations
-          python3 manage.py migrate
-          python3 manage.py collectstatic --clear
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py collectstatic --clear
+
 
