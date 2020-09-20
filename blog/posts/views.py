@@ -17,11 +17,17 @@ def home(request):
     }
     return render(request, 'home_page.html', context)
 
+
 def tag_detail(request, slug):
+    tag = get_object_or_404(models.Tag, slug=slug)
     context = {
-        'tag': get_object_or_404(models.Tag, slug=slug)
+        'tag': get_object_or_404(models.Tag, slug=slug),
+        'title': f'Tag: {tag.name}',
+        'subtitle': 'Przeglądaj inne tagi:',
+        'tags': models.Tag.objects.all()
     }
-    return render(request, 'base.html', context)
+    return render(request, 'posts/tag.html', context)
+
 
 def post_detail(request, slug):
     post = get_object_or_404(models.Post, slug=slug)
