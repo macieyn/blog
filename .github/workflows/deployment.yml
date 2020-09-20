@@ -32,7 +32,7 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY}}
         port: 22
         script: |
-          ls
+          cd ~/domains/notatnik.macieyn.usermd.net/public_python
           python manage.py makemigrations
           python manage.py migrate
           python manage.py collectstatic --clear
