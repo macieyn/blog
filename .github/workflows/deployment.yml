@@ -33,7 +33,9 @@ jobs:
         port: 22
         script: |
           cd ~/domains/notatnik.macieyn.usermd.net/public_python
-          python manage.py makemigrations
-          python manage.py migrate
-          python manage.py collectstatic --clear
+          source ~/.virtualenvs/junior/bin/activate
+          ls
+          python3 manage.py makemigrations
+          python3 manage.py migrate
+          python3 manage.py collectstatic --clear
 
