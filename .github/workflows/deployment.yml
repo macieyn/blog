@@ -23,6 +23,7 @@ jobs:
           --exclude /.git/ \
           --exclude /.github/ \
            blog/ ${{env.DEST}}
+
            
     - name: Run migrations and collect static files via SSH
       uses: appleboy/ssh-action@master
@@ -37,4 +38,5 @@ jobs:
           python manage.py makemigrations
           python manage.py migrate
           python manage.py collectstatic --clear
+
 
