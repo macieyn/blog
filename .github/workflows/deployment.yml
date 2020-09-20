@@ -35,8 +35,10 @@ jobs:
         script: |
           cd ~/domains/notatnik.macieyn.usermd.net/public_python
           source ~/.virtualenvs/junior/bin/activate
+          find . -name "*.pyc" -type f
           python manage.py makemigrations
           python manage.py migrate
           python manage.py collectstatic --clear
+          devil www restart notatnik.macieyn.usermd.net
 
 
