@@ -22,4 +22,17 @@ jobs:
           --exclude /deploy_key \
           --exclude /.git/ \
           --exclude /.github/ \
-           ./blog/ ${{env.DEST}}
+          ./blog/ ${{env.DEST}}
+          
+    - name: Run migrations and collect static files via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: s48.mydevil.net
+        username: macieyn
+        key: ${{ secrets.DEPLOY_KEY}}
+        port: 22
+        script: |
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py collectstatic --clear
+
